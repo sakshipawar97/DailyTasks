@@ -1,4 +1,4 @@
-1)Calculate the multiplication and sum of two numbers
+#Calculate the multiplication and sum of two numbers
 
 #Accepting input from the user
 number1= float(input("Enter first number: "))
@@ -15,7 +15,7 @@ print(f"The addition of {number1} and {number2} is : {addition}")
 
 --------------------------------------------------------------------------------------------
 
-2)Declare two variables and print that which variable is largest using ternary operators
+#Declare two variables and print that which variable is largest using ternary operators
 
 #Accepting input from the user
 number1= float(input("Enter first number: "))
@@ -28,7 +28,7 @@ largest= number1 if number1>number2 else number2
 print(f"The largest number between {number1} and {number2} is {largest}")
 --------------------------------------------------------------------------------------------
 
-3) Python program to convert the temperature in degree centigrade to Fahrenheit
+# Python program to convert the temperature in degree centigrade to Fahrenheit
 #Accepting the temperature from the user in °C 
 celsius= float(input("Enter temperature in Celsius: "))
 
@@ -40,18 +40,19 @@ print(f"{celsius}°c is equal to {fahrenheit}°F")
 
 --------------------------------------------------------------------------------------------
 
-4) Input the lengths of the sides of the triangle
-a = float(input("Enter the length of the first side: "))
-b= float(input("Enter the length of the second side: "))
-c= float(input("Enter the length of the third side: "))
+# Input the lengths of the sides of the triangle
+#Taking the input of lengths of the three sides of the triangle
+side1 = float(input("Enter the length of the first side : "))
+side2 = float(input("Enter the length of the second side : "))
+side3 = float(input("Enter the length of the third side : "))
 
 # Calculating the semi-perimeter
-s = (a + b + c) / 2
+semi_perimeter = (side1 + side2 + side3) / 2
 
-# Calculating the area of triangle
-area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+# Calculating the area of the triangle
+area = (semi_perimeter * (semi_perimeter - side1) * (semi_perimeter - side2) * (semi_perimeter - side3)) ** 0.5
 
 # Print the result
-print(f"The area of the triangle with sides {a}, {b}, and {c} is: {area}")
+print(f"The area of the triangle with sides {side1}, {side2}, and {side3} is: {area:.2f}")
 
 
