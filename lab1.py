@@ -40,7 +40,7 @@ print(f"{celsius}°c is equal to {fahrenheit}°F")
 
 --------------------------------------------------------------------------------------------
 
-# Input the lengths of the sides of the triangle
+#Python program to find the area of a triangle whose sides are given
 #Taking the input of lengths of the three sides of the triangle
 side1 = float(input("Enter the length of the first side : "))
 side2 = float(input("Enter the length of the second side : "))
