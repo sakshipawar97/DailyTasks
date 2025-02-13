@@ -1,0 +1,102 @@
+# Define the menu as a dictionary with categories and their respective items and price
+menu = {
+    1: {"Starters": {"Spring Rolls": 250, "Garlic Bread": 180, "Samosa": 90, "Paneer Tikka": 350}},
+    2: {"Drinks": {"Lassi (Sweet or Salted)": 90, "Mango Lassi": 100, "Thandai": 60, "Buttermilk": 60}},
+    3: {"Main Course": {"Butter Chicken": 500, "Paneer Butter Masala": 450, "Aloo Gobi": 250, "Dal Tadka": 180}},
+    4: {"Desserts": {"Mango Ice Cream": 100, "Vanilla Ice Cream": 85, "Chocolate Ice Cream": 90, "Malai": 55}}
+}
+
+# Function to display the welcome message and available categories
+def show_welcome_message():
+    print("Welcome to QuickOrder - Your Fast Food Ordering System!!")
+    print("What would you like to order?")
+    print("1. Starters")
+    print("2. Drinks")
+    print("3. Main Course")
+    print("4. Desserts")
+    print("5. Exit\n")
+
+# Function to display the menu for a selected category
+def show_menu(category):
+    category_name = list(menu[category].keys())[0]
+    print(f"\n{category_name} Menu:")
+    for item_num, (item_name, price) in enumerate(menu[category][category_name].items(), start=1):
+        print(f"{item_num}. {item_name} - ₹{price}")
+
+# Function to get details (name and price) for a specific item with validation
+def get_item_details(category, item_number):
+    category_name = list(menu[category].keys())[0]
+    items = list(menu[category][category_name].items())
+    
+    # Validate item_number
+    if item_number < 1 or item_number > len(items):
+        raise IndexError("Invalid item number. Please select a valid item.")
+    
+    item_name, price = items[item_number - 1]  # -1 to adjust for zero-based indexing
+    return item_name, price
+
+# Function to handle the food ordering process and bill generation
+def order_food():
+    total_amount = 0
+    item_count = 0
+    bill = ""
+
+    while True:
+        show_welcome_message()
+
+        try:
+            category = int(input("Please select a category (1/2/3/4/5 to Exit): "))
+            if category == 5:
+                print("\nThank you for visiting! Have a great day!")
+                return
+            
+            # Validate category selection
+            if category not in menu:
+                print("Invalid category. Please choose a valid option.")
+                continue
+
+            show_menu(category)
+
+            try:
+                item_number = int(input("\nEnter the item number you want to order: "))
+                quantity = int(input("Enter quantity: "))
+
+                item_name, price = get_item_details(category, item_number)
+
+                item_total = price * quantity
+                total_amount += item_total
+                item_count += quantity
+                bill += f"{item_name} (x{quantity}): ₹{price} x {quantity} = ₹{item_total}\n"
+                print(f"You ordered {quantity} {item_name}(s) for ₹{item_total}.")
+
+            except IndexError as e:
+                print(e)  # Handle invalid item number
+                continue
+            except ValueError:
+                print("Invalid input. Please enter valid numbers.")
+                continue
+
+        except ValueError:
+            print("Invalid input. Please enter numbers only.")
+            continue
+
+        while True:
+            more_orders = input("Do you want to order anything else? (yes/no): ").lower()
+            if more_orders == 'yes':
+                break
+            elif more_orders == 'no':
+                print("\nYour Bill:")
+                print("-------------------------")
+                print(bill)
+                print(f"Total items ordered: {item_count}")
+                print(f"Grand Total Amount: ₹{total_amount}")
+                print("Thank you for ordering! Have a great day!")
+                return
+            elif more_orders == 'exit':
+                print("\nThank you for visiting! Have a great day!")
+                return
+            else:
+                print("Invalid input. Please enter 'yes', 'no', or 'exit'.")
+
+# Start the food ordering process
+order_food()
