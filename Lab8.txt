@@ -1,0 +1,153 @@
+# Write a Python program to sum all the items in a list.
+
+
+def sum_list_items():
+    # Take input from the user
+    input_list = input("Enter numbers separated by space: ").split()
+
+    # Check if the list is empty
+    if not input_list:
+        print("The list is empty.")
+        return
+    
+    # Try to convert input to integers and handle any non-numeric input
+    try:
+        input_list = list(map(int, input_list))  # Convert input to a list of integers
+    except ValueError:
+        print("Please enter only valid numbers.")
+        return
+    
+    # Calculate the sum using the built-in sum() function
+    total_sum = sum(input_list)
+    
+    # Display the sum
+    print(f"Sum of all items in the list: {total_sum}")
+
+# Call the function
+sum_list_items()
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+ # Write a Python program to get the largest and smallest number from a list without builtin functions. 
+
+def find_min_max():
+    input_list = list(map(int, input("Enter numbers separated by space: ").split()))
+    
+    if not input_list:
+        print("List is empty.")
+        return
+    
+    min_value = max_value = input_list[0]
+    
+    for num in input_list:
+        if num < min_value:
+            min_value = num
+        if num > max_value:
+            max_value = num
+
+    print(f"Smallest number: {min_value}")
+    print(f"Largest number: {max_value}")
+
+# Call the function
+find_min_max()
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Write a Python program to find duplicate values from a list and display those. 
+
+def find_duplicates(input_list):
+    # Initialize an empty list to store duplicates and a set to track seen elements
+    duplicates = []
+    seen = set()
+
+    # Loop through each element in the list
+    for item in input_list:
+        # If the item is already in the seen set and not already in duplicates list
+        if item in seen and item not in duplicates:
+            duplicates.append(item)  # Add the duplicate to the duplicates list
+        else:
+            seen.add(item)  # Mark the item as seen
+
+    # Return the list of duplicates or a message if no duplicates found
+    if duplicates:
+        return duplicates
+    else:
+        return "No duplicates found."
+
+# Example usage
+input_list = list(map(int, input("Enter numbers separated by space: ").split()))
+result = find_duplicates(input_list)
+
+# Output the result
+if isinstance(result, list):
+    print(f"Duplicate values: {result}")
+else:
+    print(result)  # If result is a message, print the message
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Write a Python program to split a given list into two parts where the length of the first part of the list is given. 
+#Original list: [1, 1, 2, 3, 4, 4, 5, 1] 
+#Length of the first part of the list: 3 
+#Splitted the said list into two parts: ([1, 1, 2], [3, 4, 4, 5, 1]) 
+
+def split_list(input_list, first_part_length):
+    # Validate the input list and length of the first part
+    if not isinstance(input_list, list):
+        return "Error: Input must be a list."
+    
+    if not input_list:
+        return "Error: The list cannot be empty."
+    
+    if not isinstance(first_part_length, int):
+        return "Error: The length of the first part must be an integer."
+    
+    if first_part_length < 0 or first_part_length > len(input_list):
+        return "Error: The length of the first part is out of range."
+
+    # Split the list into two parts
+    first_part = input_list[:first_part_length]
+    second_part = input_list[first_part_length:]
+
+    return first_part, second_part
+
+# Example usage:
+input_list = list(map(int, input("Enter numbers separated by space: ").split()))
+first_part_length = int(input("Enter the length of the first part: "))
+
+result = split_list(input_list, first_part_length)
+
+# Output the result
+if isinstance(result, tuple):
+    print(f"Splitted the list into two parts:\n{result}")
+else:
+    print(result)  # Display error messages if any
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Write a Python program to traverse a given list in reverse order, and print the elements with the original index. 
+#Original list:['red', 'green', 'white', 'black'] 
+#Traverse the said list in reverse order:black white green red
+
+def traverse_list_reverse():
+    # Given list
+    original_list = ['red', 'green', 'white', 'black']
+    
+    # Create a list to store the elements with their original index in reverse order
+    reversed_elements_with_index = []
+    
+    # Traverse the list in reverse order
+    for index in range(len(original_list) - 1, -1, -1):  # Start from the last index and go till 0
+        reversed_elements_with_index.append((index, original_list[index]))
+    
+    # Return the list of elements with their indices in reverse order
+    return reversed_elements_with_index
+
+# Call the function and store the result
+reversed_list = traverse_list_reverse()
+
+# Display the returned result
+reversed_list
+
