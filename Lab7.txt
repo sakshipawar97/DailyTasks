@@ -1,0 +1,109 @@
+# Write a python program to count the occurrences of each word in the given sentence
+# string = "To change the overall look of your document. To change the look available in the gallery."
+
+
+# This function counts how many times each word appears in a sentence
+def count_word_occurrences():
+    # Ask the user to enter a sentence and convert everything to lowercase to avoid case sensitivity
+    sentence = input("Enter a sentence: ").lower()
+    
+    # Split the sentence into individual words
+    words = sentence.split()
+    
+    # Create an empty list to store unique words
+    unique_words = []
+    
+    # Create an empty list to store the count for each unique word
+    counts = []
+    
+    # Loop through each word in the sentence
+    for word in words:
+        # Remove any punctuation marks like commas or periods from the word
+        word = word.strip(".,!")
+        
+        # If the word hasn't been added to the unique list yet, add it and start its count at 1
+        if word not in unique_words:
+            unique_words.append(word)  # Add the word to the list of unique words
+            counts.append(1)  # Start counting this word
+        else:
+            # If the word is already in the list, find its position and increase its count
+            index = unique_words.index(word)  # Find the index of this word
+            counts[index] += 1  # Increase its count by 1
+
+    # Print out the result
+    print("\nWord occurrences:")
+    for i in range(len(unique_words)):
+        # Show the word along with how many times it appeared
+        print(f"{unique_words[i]}: {counts[i]}")
+
+# Call the function to test it out
+count_word_occurrences()
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+# Define a function that accepts a string as an argument
+def remove_newlines(input_string):
+    # Check if the string is empty or contains only newlines
+    if not input_string or input_string.strip() == "":
+        print("The input string is empty or contains only newlines.")
+        return
+    
+    # Remove newline characters by replacing them with a space
+    cleaned_string = input_string.replace("\n", " ")
+    print("String without newlines:", cleaned_string)
+
+# Pass the sentence as an argument when calling the function
+sentence = "\nBest \nDeeptech \nPython \nTraining\n"
+remove_newlines(sentence)
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+# Write a python program to reverse words in a string
+# string = "Deeptech Python Training"
+
+# Function to reverse words in a string
+def reverse_words(input_string):
+    # Split the string into a list of words
+    words = input_string.split()
+    
+    # Reverse the list of words
+    reversed_words = words[::-1]
+    
+    # Join the reversed words back into a single string
+    reversed_string = " ".join(reversed_words)
+    
+    return reversed_string
+
+# Input string
+sentence = "Deeptech Python Training"
+
+# Call the function and print the result
+result = reverse_words(sentence)
+print("Reversed string:", result)
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+#Write a python program to count and dispaly vowels of a given text
+# string="Welcome to python training"
+
+# Function to count and display vowels in a given text
+def count_vowels(input_string):
+    input_string = input_string.lower()  # Convert to lowercase
+    vowels = "aeiou"  # List of vowels
+    counts = [0] * len(vowels)  # Array to store counts for each vowel
+
+    for char in input_string:
+        if char in vowels:
+            index = vowels.index(char)  # Find index of vowel in vowels list
+            counts[index] += 1  # Increment count for that vowel
+
+    print("\nVowel counts:")
+    for i in range(len(vowels)):
+        if counts[i] > 0:  # Print only vowels that appear
+            print(f"{vowels[i]}: {counts[i]}")
+
+# Directly pass the string to the function
+string = "Welcome to python training"
+count_vowels(string)
